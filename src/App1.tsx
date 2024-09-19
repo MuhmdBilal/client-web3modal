@@ -7,11 +7,9 @@ declare global {
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useEffect, useState } from "react";
 import {
-  useNetwork,
   useAccount,
   useConnect,
   useDisconnect,
-  usePublicClient,
 } from "wagmi";
 import "./App.css";
 
@@ -35,7 +33,7 @@ import "./components/Navbar.css";
 import "./components/PolicyModal.css";
 import "./components/Preloader.css";
 import "./components/VideoNews.css";
-import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+// import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 
 // Sözleşme ;
 // const contractAddress = "0x27ad61e183A52Dc205EC8a249f3ea696095f14C0";
@@ -464,6 +462,11 @@ const contractABI = [
     type: "function",
   },
 ];
+// declare global {
+//   interface Window {
+//     ethereum?: any;
+//   }
+// }
 function App() {
   const { open } = useWeb3Modal();
   const { address, isConnected } = useAccount();
@@ -483,6 +486,7 @@ function App() {
 
   useEffect(() => {
     const checkWalletConnection = async () => {
+      
       if (window.ethereum && window.ethereum.isMetaMask) {
         const accounts = await (window.ethereum as any).request({
           method: "eth_accounts",

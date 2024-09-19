@@ -8,41 +8,39 @@ import { WagmiConfig } from "wagmi";
 import { bscTestnet } from "wagmi/chains"; // Import only bscTestnet
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-// QueryClient oluşturuluyor
+// Create a new QueryClient for react-query
 const queryClient = new QueryClient();
 
-// WalletConnect'ten alınan projectId
+// WalletConnect projectId
 const projectId = "9205d575da21f29d8e41a0abaaba6f0d";
 
-// Desteklenen zincirler (Only BSC Testnet now)
+// Supported chains (BSC Testnet in this case)
 const chains = [bscTestnet];
+
+// Metadata for Web3Modal
 const metadata = {
   name: 'AppKit',
   description: 'AppKit Example',
   url: 'https://web3modal.com',
   icons: ['https://avatars.githubusercontent.com/u/37784886']
-}
+};
 
-// wagmiConfig oluşturuluyor
+// Create wagmiConfig for WagmiConfig
 const wagmiConfig = defaultWagmiConfig({
   projectId,
   chains,
-  // metadata: {
-  //   name: "PredatorAiBot",
-  //   description: "Trading Ai Signal Bot",
-  //   url: "https://web3modal.com", // Domain adresinizle eşleşmeli
-  //   icons: ["https://www.predatoraibot.com/vite.svg"], // Uygulama ikonu
-  // },
 });
 
+// Initialize Web3Modal
 createWeb3Modal({
   chains,
   projectId,
-  wagmiConfig: wagmiConfig,
+  wagmiConfig, // pass wagmiConfig correctly here
   metadata,
 });
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+// Render the app
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <WagmiConfig config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>

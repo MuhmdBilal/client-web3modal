@@ -1,0 +1,132 @@
+/* Fear & Greed Index Container */
+.fear-greed-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+/* İçerik düzeni (desktop için yan yana olacak) */
+.fear-greed-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Grafik (sol) */
+.fear-greed-chart {
+  flex: 1;
+  text-align: center;
+}
+
+.fear-greed-chart h3 {
+  color: #f28c28;
+}
+
+.fear-greed-image {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Tarihsel veriler (sağ) */
+.fear-greed-history {
+  flex: 1;
+  padding: 20px;
+  background-color: #292929;
+  border-radius: 8px;
+}
+
+.fear-greed-history h4 {
+  color: #f28c28;
+  margin-bottom: 20px;
+}
+
+.history-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+}
+
+.label {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.classification {
+  color: #f28c28;
+  font-weight: bold;
+}
+
+.value {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Renk Skalası */
+.extreme-fear {
+  background-color: #d9534f;
+}
+
+.fear {
+  background-color: #f0ad4e;
+}
+
+.neutral {
+  background-color: #5bc0de;
+}
+
+.greed {
+  background-color: #5cb85c;
+}
+
+.extreme-greed {
+  background-color: #0275d8;
+}
+
+/* Geri sayım */
+.fear-greed-timer {
+  margin-top: 20px;
+  background-color: #292929;
+  padding: 20px;
+  border-radius: 8px;
+  color: #f28c28;
+  text-align: center;
+}
+
+.fear-greed-timer h4 {
+  margin-bottom: 10px;
+}
+
+.fear-greed-timer p {
+  font-size: 1.2rem;
+}
+
+/* Mobil cihazlar için medya sorgusu */
+@media (max-width: 768px) {
+  .fear-greed-content {
+    flex-direction: column; /* İçerikleri alt alta getir */
+  }
+
+  .fear-greed-chart, .fear-greed-history {
+    max-width: 100%; /* Genişliği tam olarak ayarla */
+  }
+
+  .fear-greed-chart {
+    margin-bottom: 20px; /* Araya boşluk ekle */
+  }
+}

@@ -1,0 +1,86 @@
+/* Genel container */
+.about-container {
+  max-width: 1200px;
+  margin: 40px auto; /* Binance News ile boşluk */
+  padding: 40px 20px;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Başlık stil */
+.about-container h2 {
+  color: #f28c28;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* İçerik düzeni */
+.about-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Video düzeni */
+.about-video {
+  flex: 1;
+  max-width: 600px;
+  text-align: center;
+}
+
+.about-video video {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Metin düzeni */
+.about-text {
+  flex: 1;
+  max-width: 600px;
+  overflow-y: auto;
+  max-height: 600px; /* Dikey scroll bar için yüksekliği sınırlıyoruz */
+  padding-right: 10px;
+}
+
+.about-text h3, .about-text h4 {
+  color: #d25409;
+  margin-bottom: 10px;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #e0e0e0;
+}
+
+/* Scroll bar */
+.about-text::-webkit-scrollbar {
+  width: 8px;
+}
+
+.about-text::-webkit-scrollbar-thumb {
+  background-color: #f28c28;
+  border-radius: 8px;
+}
+
+/* Mobil uyum */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+  }
+
+  .about-video, .about-text {
+    max-width: 100%;
+  }
+
+  .about-text {
+    max-height: 300px; /* Mobilde daha küçük bir yükseklik */
+  }
+}

@@ -1,0 +1,53 @@
+/* styles/Home.module.css */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25vh; /* Ekranın tamamını kapsaması için tam yükseklik */
+  text-align: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  height: 20vh; /* Kartın sabit bir yüksekliği */
+}
+
+.card h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #f28c28;
+}
+
+
+/* Mobil cihazlar için medya sorguları */
+@media (max-width: 768px) {
+  .card {
+    max-width: 90%; /* Mobil cihazlar için kart genişliğini ekranın %90'ı yapıyoruz */
+    height: auto;   /* Yüksekliği içerik boyutuna göre ayarlıyoruz */
+    padding: 15px;  /* Mobil için padding değerini azaltıyoruz */
+  }
+
+  .card h2 {
+    font-size: 20px; /* Başlık boyutunu mobil cihazlar için küçültüyoruz */
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    max-width: 95%; /* Daha küçük ekranlar için genişliği %95 yapıyoruz */
+    padding: 10px;  /* Küçük ekranlarda padding daha da azaltılıyor */
+  }
+
+  .card h2 {
+    font-size: 18px; /* Daha küçük ekranlar için başlık boyutu küçültülüyor */
+  }
+}

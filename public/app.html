@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PredatorAiBot</title>
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js" integrity="sha384-Oz7lgvFTBmF2tgUbWhi+UbVpO6A2ZHxrXxggo99/YCCTr3eeRtYstVqatDifOd5I" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+    <script src="https://s3.tradingview.com/tv.js"></script>
+    <script src="metamask-sdk.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+
+
+
+
+
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                                <!-- Add this inside your existing navbar -->
+<li class="nav-item dropdown">
+    <a class="nav-link " href="#" id="communityButton" role="button"   aria-haspopup="true" aria-expanded="false">
+
+    </a>
+    <div class="dropdown-menu" aria-labelledby="communityButton" id="communityDropdown">
+        <!-- Dropdown içeriği JS tarafından eklenecek -->
+    </div>
+</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="aboutButton"> </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="usageButton"> </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="strategyButton"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="policyButton"></a>
+                </li>
+
+
+            </ul>
+        </div>
+    </nav>
+
+
+
+   <div id="top-left">
+
+
+          <img src="PredetorAiBotlogo.svg" alt="Metachain Logo" width="300" height="auto">
+
+    </div>
+    <!-- Add this in the body or a script section -->
+    <audio id="buttonClickSound" src="robotic2.wav"></audio>
+    <!-- Background image -->
+    <div id="background-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: url('predatoraii.jpeg'); background-size: cover; background-position: center;">
+    </div>
+    <video id="background-video" autoplay loop muted >
+        <source src="https://link.storjshare.io/s/ju3r4nrz45p5g7poiji35qwbcg3a/predatoraibot/predator11.mp4?wrap=0" >
+        Your browser does not support the video tag.
+    </video>
+
+    <div id="particles-js"></div>
+    <div class="container-fluid main-container">
+        <div class="row h-100">
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <div class="card left-container" id="mainContainer">
+
+                    <button id="connectButton" class="btn btn-custom  " hidden>
+                        Connect Wallet
+                        <img src="metamask-icon.svg" alt="MetaMask Icon" style="width: 20px; height: 20px; margin-right: 8px;margin-top: -8px;">
+                    </button>
+                         
+
+
+
+
+                    <div id="walletAddress" style="margin-top: 10px; color: white;"></div>
+                    <div id="subscriptionInfo" hidden style="display:none;">
+                        <p>By subscribing, <span id="subscriptionFee">0.01</span> AVAX ($<span id="subscriptionFeeUSD">3</span>) will be deducted daily and you will receive trading signals.</p>
+                        <button id="subscribeButton" class="btn btn-custom" >Subscribe</button>
+                    </div>
+                    <div id="tradingSection" style="display:none;">
+                        <div class="d-flex justify-content-between align-items-center selection-container" >
+                            <div class="dropdown mr-2">
+                                <button class="btn btn-custom dropdown-toggle" id="dropdownButton">Select Coin</button>
+                                 <input type="text" id="coinSearch" class="form-control mr-2" placeholder="Search for coins..." >
+                                <div id="coinDropdown" class="dropdown-menu" style="display: none;" >
+
+                                </div>
+                            </div>
+
+
+                            <div class="select-wrapper">
+                                <select id="timeframeSelect" class="form-control">
+                                    <option value="1m">1 Minute</option>
+                                    <option value="5m">5 Minutes</option>
+                                    <option value="15m">15 Minutes</option>
+                                    <option value="30m">30 Minutes</option>
+                                    <option value="1h">1 Hour</option>
+                                    <option value="4h">4 Hours</option>
+                                    <option value="1d">1 Day</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="status"></div>
+                    <div id="timer" style="display:none;">Subscription time remaining: <span id="countdown"></span></div>
+
+                    <button id="tradeHistoryButton" onclick="showTradeHistory()">Trade History</button>
+
+
+
+
+                <!-- Connected Wallets Card -->
+                    <div class="card ml-3" id="connectedWalletsCard" style="background-color: rgba(0, 0, 0, 0.7); color: white;">
+                        <div style="padding-left:15px;padding-top:15px;padding-right:15px" class="body1">
+
+                            <p id="walletCount">Loading...</p>
+                        </div>
+                    </div>
+                        <a style="margin-top:15px"   href="https://chain.link/badge" target="_blank">
+    <img src="https://uploads-ssl.webflow.com/5f6b7190899f41fb70882d08/632c50d9db40967f015be6d1_secured-with-chainlink-badge-market-data.svg" alt="market data secured with chainlink" style="width: 180px; height: auto;">
+</a>
+
+
+
+
+                </div>
+            </div>
+            <div class="col-md-6 d-flex align-items-center justify-content-center flex-column">
+                <div class="card right-container d-none" id="rightContainer">
+                    <div id="signals" class="signals-container"></div>
+                </div>
+                <button id="clearButton" class="btn btn-custom mt-3">Clear All</button> <!-- Moved button immediately below the right card -->
+
+
+
+<!-- Volume Check Kartı -->
+<div class="card" id="volumeheader" style="background-color: rgba(0, 0, 0, 0.7); color: white; width: fit-content; padding: 15px; display: inline-block; border-radius: 10px;">
+    <div class="card-header"  style="font-size: 16px; font-weight: bold; margin-bottom: 5px; text-align: center;">
+        Volume&Price Change Check
+    </div>
+    <div class="form-inline" style="display: flex; align-items: center;">
+        <button id="volumeControlButton" class="btn btn-primary volume-button" style="background-color: #333; border-color: #333; color: white; font-weight: bold; margin-right: 10px;">Volume Check</button>
+        <select class="form-select timeframe-select" id="globalTimeframeSelect" style="background-color: #333; color: white; border-color: #333; padding: 5px; border-radius: 5px;">
+            <option value="1m">1 Minute</option>
+            <option value="5m">5 Minutes</option>
+            <option value="15m">15 Minutes</option>
+            <option value="1h">1 Hour</option>
+            <option value="4h">4 Hours</option>
+            <option value="1d">1 Day</option>
+        </select>
+    </div>
+</div>
+
+
+
+
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+
+<div id="realTimeChartContainer" style="display: none; position: fixed; top: 10%; left: 0; width: 50%; height: 50%; background-color: rgba(0, 0, 0, 0.9); z-index: 1000;">
+    <button id="closeChartButton" class="btn btn-custom" style="position: absolute; top: 10px; right: 10px; z-index: 1001;">Close</button>
+    <div id="realTimeChart" style="width: 100%; height: 100%; margin: 0; padding: 0;"></div>
+</div>
+
+
+
+    <audio id="backgroundMusic" loop>
+        <source src="cinematic.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+
+    <div id="aboutSection" class="section">
+
+        <button id="closeAboutButton" class="close-btn1">&times;</button>
+        <div class="row">
+
+            <div class="col-md-6">
+                <video id="aboutVideo" controls>
+                    <source src="https://link.storjshare.io/s/juimn4qslv7572molholwm6qxgwq/predatoraibot/about.mp4?wrap=0" type="video/mp4">
+                </video>
+            </div>
+            <div id="aboutText" class="col-md-6">
+                <h3>Algorithmic Financial Trading with Deep CNN</h3>
+                <h3>Introduction</h3>
+                <p>In this study, we present a novel approach to algorithmic financial trading using Deep Convolutional Neural Networks (CNNs). This method aims to leverage the powerful feature extraction capabilities of CNNs to predict stock price movements and inform trading decisions.</p>
+                <h3>Method</h3>
+                <h4>Data Collection and Preprocessing</h4>
+                <p><strong>Data Collection:</strong></p>
+                <ul>
+                    <li>Historical stock price data is collected from reliable financial databases.</li>
+                    <li>Features such as open, high, low, close prices, and trading volume are extracted.</li>
+                    <li>Supplementary features like technical indicators (e.g., RSI, MACD) are also computed.</li>
+                </ul>
+                <p><strong>Data Preprocessing:</strong></p>
+                <ul>
+                    <li>Missing values are handled through interpolation or imputation.</li>
+                    <li>Data is normalized to ensure uniform scaling, which helps the CNN learn more effectively.</li>
+                    <li>The data is split into training, validation, and test sets.</li>
+                </ul>
+                <h4>Model Architecture</h4>
+                <p><strong>CNN Design:</strong></p>
+                <ul>
+                    <li>A deep CNN architecture is designed to process the time series data of stock prices.</li>
+                    <li>Convolutional layers extract spatial features, followed by pooling layers to reduce dimensionality.</li>
+                    <li>Fully connected layers are used to interpret these features and make predictions.</li>
+                </ul>
+                <p><strong>Training the Model:</strong></p>
+                <ul>
+                    <li>The model is trained using the training dataset.</li>
+                    <li>A loss function (e.g., Mean Squared Error) is minimized using an optimizer like Adam.</li>
+                    <li>Hyperparameters such as learning rate, batch size, and number of epochs are tuned for optimal performance.</li>
+                </ul>
+                <h3>Evaluation</h3>
+                <p><strong>Performance Metrics:</strong></p>
+                <ul>
+                    <li>The model's performance is evaluated using metrics like Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and R-squared.</li>
+                    <li>Trading-specific metrics such as Sharpe Ratio and maximum drawdown are also considered.</li>
+                </ul>
+                <p><strong>Backtesting:</strong></p>
+                <ul>
+                    <li>The trained model is backtested on the test dataset to simulate real-world trading scenarios.</li>
+                    <li>Profitability and risk metrics are analyzed to ensure robustness.</li>
+                </ul>
+                <h3>Figures and Visuals</h3>
+                <p><strong>Data Flow Diagram:</strong></p>
+                <ul>
+                    <li>A visual representation of the data collection and preprocessing pipeline.</li>
+                </ul>
+                <p><strong>CNN Architecture:</strong></p>
+                <ul>
+                    <li>A diagram showing the layers of the CNN, from input through convolutional layers to the output layer.</li>
+                </ul>
+                <p><strong>Training and Validation Loss:</strong></p>
+                <ul>
+                    <li>Graphs illustrating the loss over epochs during the training process.</li>
+                </ul>
+                <p><strong>Backtesting Results:</strong></p>
+                <ul>
+                    <li>Performance metrics and example trades plotted to show the model's efficacy.</li>
+                </ul>
+                <h3>Conclusion</h3>
+                <p>Our Deep CNN-based approach to algorithmic trading demonstrates significant potential in predicting stock price movements and informing profitable trading decisions. By leveraging advanced deep learning techniques, traders can enhance their strategies and achieve better outcomes.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="usageSection" class="section">
+        <button id="closeUsageButton" class="close-btn1">&times;</button>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Usage</h2>
+                <p>This application allows users to connect their MetaMask wallet, subscribe to a service that provides trading signals, and interact with a real-time trading dashboard. Follow the steps below to get started:</p>
+
+                <!-- Step 1: Connect Your Wallet -->
+                <div class="usage-step">
+                    <div class="usage-video">
+                        <video src="https://link.storjshare.io/s/jw2yymwmx5d74sfzk72l45f3ktha/predatoraibot/connect-wallet.mp4?wrap=0" alt="Connect Wallet Video" autoplay muted loop></video>
+                    </div>
+                    <div class="usage-content">
+                        <h3>Step 1: Connect Your Wallet</h3>
+                        <p>Click the <strong>"Connect Wallet"</strong> button on the main screen.</p>
+                        <p>A MetaMask prompt will appear asking for permission to connect your account. Approve the connection.</p>
+                        <p>Once connected, your wallet address will be displayed, and you will be able to access the subscription options.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2: Subscribe to the Service -->
+                <div class="usage-step">
+                    <div class="usage-video">
+                        <video src="https://link.storjshare.io/s/jwyrab6bzkaxc6oh7rwvdvcx2vhq/predatoraibot/subscribe.mp4?wrap=0" alt="Subscribe Video" autoplay muted loop></video>
+                    </div>
+                    <div class="usage-content">
+                        <h3>Step 2: Subscribe to the Service</h3>
+                        <p>After connecting your wallet, review the subscription fee displayed in AVAX and equivalent USD.</p>
+                        <p>Click the <strong>"Subscribe"</strong> button to make the payment and activate your subscription.</p>
+                        <p>Once the transaction is successful, you will gain access to exclusive trading signals.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3: Select Coins and Timeframes -->
+                <div class="usage-step">
+                    <div class="usage-video">
+                        <video src="https://link.storjshare.io/s/juvmcmtgf2krgtqovbyvpfwkdkta/predatoraibot/select-coins.mp4?wrap=0" alt="Select Coins Video" autoplay muted loop></video>
+                    </div>
+                    <div class="usage-content">
+                        <h3>Step 3: Select Coins and Timeframes</h3>
+                        <p>Choose from a list of available coins by clicking on the <strong>"Select Coin"</strong> dropdown.</p>
+                        <p>Use the search bar to quickly find a specific coin.</p>
+                        <p>Select the desired timeframe for trading signals (e.g., 1 Minute, 5 Minutes, etc.).</p>
+                        <p>The selected coins and timeframes will be displayed on your dashboard.</p>
+                    </div>
+                </div>
+
+                <!-- Step 4: Monitor Trading Signals -->
+                <div class="usage-step">
+                    <div class="usage-video">
+                        <video src="https://link.storjshare.io/s/jvuqfjo3typppjimw23vwlxvfyxq/predatoraibot/monitor-signals.mp4?wrap=0" alt="Monitor Signals Video" autoplay muted loop></video>
+                    </div>
+                    <div class="usage-content">
+                        <h3>Step 4: Monitor Trading Signals</h3>
+                        <p>Access real-time trading signals for your selected coins directly on the dashboard.</p>
+                        <p>Each signal includes predictions like "Buy" or "Sell" with confidence indicators.</p>
+                        <p>Test signals using the <strong>"Test Signal"</strong> button to simulate trades and evaluate potential outcomes.</p>
+                    </div>
+                </div>
+
+                <!-- Step 5: Real-time Chart Analysis -->
+                <div class="usage-step">
+                    <div class="usage-video">
+                        <video src="https://link.storjshare.io/s/jwtwlevcvtlas3mgfndxu5ij7qcq/predatoraibot/chart-analysis.mp4?wrap=0" alt="Chart Analysis Video" autoplay muted loop></video>
+                    </div>
+                    <div class="usage-content">
+                        <h3>Step 5: Real-time Chart Analysis</h3>
+                        <p>For deeper analysis, view real-time trading charts by clicking on the signals.</p>
+                        <p>Charts include indicators such as RSI and MACD to help you make informed trading decisions.</p>
+                        <p>Use the provided tools to analyze price trends and signal accuracy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Strategy Section -->
+    <div id="strategySection" class="section">
+    <button id="closeStrategyButton" class="close-btn1">&times;</button>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Strategy</h2>
+            <!-- Video Element -->
+
+            <p>If you are using 1-minute or 5-minute charts, it's recommended to wait for the subsequent signal instead of acting on the initial one. This approach allows for quick scalping trades. However, if you are considering a longer-term intraday strategy, you may want to analyze the charts and make decisions based on the signals presented.</p>
+            <p><strong>Note:</strong> None of this constitutes investment advice.</p>
+            <div class="strategy-video mb-3">
+                <video controls autoplay muted loop>
+                    <source src="https://link.storjshare.io/s/julifn3h2knfgueycqrd3rtefcba/predatoraibot/strategy-video.mp4?wrap=0" type="video/mp4" >
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- Policy Disclaimer Section -->
+    <div id="policySection" class="section"  >
+        <button id="closePolicyButton" class="close-btn1">&times;</button>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Policy Disclaimer</h2>
+                <h4><strong>PredatorAIbot Usage Disclaimer:</strong></h4>
+                <p>The information provided by PredatorAIbot may not be sufficient for making investment decisions and does not replace professional financial advice. All decisions to buy, sell, hold, or trade securities, commodities, and other investments involve risk and should be made with the advice of a qualified financial professional. Any trading in securities or other investments carries the risk of significant loss. The practice of "day trading" involves particularly high risks and could result in substantial financial losses. You should consult a qualified financial professional before entering into any trading program. Please consider whether such transactions are suitable for you in light of your financial situation and your tolerance for financial risks. We will not be liable for any loss or damage suffered by you or anyone else as a result of any trading or investment activity you or any other person engages in based on any information or materials you receive through PredatorAIbot or our services.</p>
+                <h4><strong>Subscription Information:</strong></h4>
+                <p>PredatorAIbot stores wallet information for the duration of your 24-hour subscription only. Once the subscription ends, this wallet information is deleted.</p>
+            </div>
+        </div>
+    </div>
+
+
+        <!-- Policy Disclaimer Modal for Subscription -->
+    <div id="policyModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="policyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="policyModalLabel">Policy Disclaimer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>PredatorAIbot Usage Disclaimer:</strong></p>
+                    <p>The information provided by PredatorAIbot may not be sufficient for making investment decisions and does not replace professional financial advice. All decisions to buy, sell, hold, or trade securities, commodities, and other investments involve risk and should be made with the advice of a qualified financial professional. Any trading in securities or other investments carries the risk of significant loss. The practice of "day trading" involves particularly high risks and could result in substantial financial losses. You should consult a qualified financial professional before entering into any trading program. Please consider whether such transactions are suitable for you in light of your financial situation and your tolerance for financial risks. We will not be liable for any loss or damage suffered by you or anyone else as a result of any trading or investment activity you or any other person engages in based on any information or materials you receive through PredatorAIbot or our services.</p>
+                    <p><strong>Subscription Information:</strong></p>
+                    <p>PredatorAIbot stores wallet information for the duration of your 24-hour subscription only. Once the subscription ends, this wallet information is deleted.</p>
+                    <div id="policyConfirmation">
+                        <input type="checkbox" id="confirmPolicy">
+                        <label for="confirmPolicy">I have read and agree to the policy</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" id="confirmButton" class="btn btn-custom" disabled>Read & Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- Fullscreen Video Modal -->
+    <div id="fullscreenVideoModal" class="video-modal">
+        <div class="modal-content2">
+            <span id="closeModalButton" class="close-btn1">&times;</span>
+            <video id="fullscreenVideo" controls></video>
+        </div>
+    </div>
+
+      <script src="script.js"></script>
+  <!--   <script type="module"   src="scr.js"></script> -->
+  <script src="particles-config.js"></script>
+
+    <div id="overlay"></div>
+
+ <!-- Test Signal Modal -->
+<div class="modal fade" id="testSignalModal" tabindex="-1" role="dialog" aria-labelledby="testSignalModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="testSignalModalLabel">Test Signal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Bootstrap Grid System -->
+                <div class="row">
+                    <!-- Left Card for TradingView Chart -->
+                    <div class="col-lg-7 col-md-7 col-sm-12 mb-3">
+                        <div class="card" id="chartCard">
+                            <div id="tradingViewChart" style="width: 100%; height: 100%; min-height: 350px;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Right Card for Trading Information -->
+                    <div class="col-lg-5 col-md-5 col-sm-12 mb-3">
+                        <div class="card trade-card">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div>
+                                    <!-- Coin Title and Predicted Signal -->
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title" id="coinTitle">BTC/USDT Sürekli</h5>
+                                        <div>
+                                            <span id="predictionLabel" style="font-weight: bold;">Prediction Signal:</span>
+                                            <span id="predictedSignal" class="badge badge-secondary">Waiting</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="badge badge-secondary" id="leverageBadge"></span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <div class="d-flex justify-content-between">
+                                            <span>Unrealized PNL (USDT)</span>
+                                            <span id="pnlDisplay" class="text-danger">-0.0048 [-1.53%]</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Size (USDT)</span>
+                                            <span id="sizeDisplay">3.1104</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Margin (USDT)</span>
+                                            <span id="marginDisplay">0.3118</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Entry Price</span>
+                                            <span id="entryPrice">0.1298</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Current Price</span>
+                                            <span id="currentPrice">0.1296</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <button id="longButton" class="btn btn-success w-100 mx-1">Long</button>
+                                        <button id="shortButton" class="btn btn-danger w-100 mx-1">Short</button>
+                                        <button id="closePositionButton" class="btn btn-secondary w-100 mx-1" disabled>Close Position</button>
+                                    </div>
+
+                                    <!-- Inputs for Money, Leverage, and Fee Percentage -->
+                                    <div class="form-group row mt-3">
+                                        <div class="col-12 col-md-4">
+                                            <label for="amountInput" class="form-label">Money (USDT)</label>
+                                            <input type="number" class="form-control" id="amountInput" placeholder="Enter amount" min="0.01" step="0.01">
+                                        </div>
+                                        <div class="col-12 col-md-4">
+    <label for="leverageInput" class="form-label">Leverage</label>
+    <input type="range" class="form-range" id="leverageInput" min="1" max="200" step="1" oninput="leverageValueDisplay.value = leverageInput.value">
+    <input type="number" id="leverageValueDisplay" class="form-control mt-2" readonly>
+</div>
+
+                                        <div class="col-12 col-md-4">
+                                            <label for="fee" class="form-label">Fee (%)</label>
+                                            <select id="fee" class="form-control">
+                                                <option value="0">0.00</option>
+                                                <option value="0.01">0.01</option>
+                                                <option value="0.02">0.02</option>
+                                                <option value="0.03">0.03</option>
+                                                <option value="0.04">0.04</option>
+                                                <option value="0.05">0.05</option>
+                                                <option value="0.06">0.06</option>
+                                                <option value="0.07">0.07</option>
+                                                <option value="0.08">0.08</option>
+                                                <option value="0.09">0.09</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Grid System -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- PnL Modal -->
+    <div id="pnlModal" class="pnl-modal">
+        <div class="pnl-modal-content">
+            <span id="pnlResult" class="pnl-text"></span>
+            <button id="closePnlModal" class="btn-custom">Close</button>
+        </div>
+    </div>
+
+    <!-- Custom Alert Modal -->
+    <div id="customAlertModal" class="modal1" tabindex="-1" role="dialog">
+        <div class="modal-dialog1" role="document">
+            <div class="modal-content1">
+                <div class="modal-header1 text-center ">
+                    <h3 class="modal-title1 text-danger">Alert</h3>
+
+                </div>
+                <div class="modal-body1">
+                    <p id="alertMessage" class="text-light">This is an alert message.</p>
+                </div>
+                <div class="modal-footer1">
+                    <button type="button" class="btn btn-custom" onclick="closeAlertModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<div id="volumeWaitingCard" class="volume-waiting-overlay" style="display: none;">
+    <div class="volume-waiting-card">
+        <div class="card-body">
+            <h5 class="card-title">Volume data is loading...</h5>
+            <p class="card-text">Please wait while we retrieve the volume data from 285 coin at the same time</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- Volume Control Modal -->
+<div class="modal fade" id="volumeControlModal" tabindex="-1" role="dialog" aria-labelledby="volumeControlModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(15px);">
+    <div class="modal-dialog volumescreen" role="document" style="max-width: 80%; margin: auto;">
+        <div class="modal-content" style="margin-top: 10vh; margin-bottom: 10vh;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="volumeControlModalLabel" style="text-align: center;">Top 10 Coins with the Highest Volume Increase in the Last 1 Minute</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Hacim ve Fiyat Değişimi Kartları -->
+                <div class="row" id="volumeChangeCardsContainer">
+                    <!-- Hacim Değişimi Kartları burada dinamik olarak eklenecek -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Trade History Modal -->
+<div class="modal fade" id="tradeHistoryModal" tabindex="-1" role="dialog" aria-labelledby="tradeHistoryModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);">
+    <div class="modal-dialog5 modal-lg" role="document" style="max-width: 100%; width: auto;">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom: 1px solid #444;">
+                <h5 class="modal-title" id="tradeHistoryModalLabel">Trade History</h5>
+                <button type="button" class="close" onclick="closeModal()" data-dismiss="modal" aria-label="Close" style="color: white;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding-bottom: 60px; position: relative;">
+                <!-- Trade History Table -->
+                <div class="table-responsive" id="tradeHistoryContent" style="width: 100%; overflow-x: auto;">
+                    <!-- Trade History entries will be dynamically added here -->
+                </div>
+            </div>
+            <button type="button" id="clearHistoryButton" class="btn btn-danger" style="position: absolute; right: 10px; bottom: 10px; z-index: 10;">Clear History</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Alert Modal -->
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background-color: rgba(30, 30, 30, 0.85);">
+            <div class="modal-header">
+                <h5 class="modal-title" id="alertModalLabel" style="color: red; text-align: center; width: 100%;">Alert</h5>
+            </div>
+            <div class="modal-body" style="color: white; text-align: center;">
+                Are you sure you want to clear the trade history?
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-primary" id="confirmButton1">OK</button>
+                <button type="button" class="btn btn-secondary" id="cancelButton" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<footer class="marquee">
+    <span> Copyright &copy; 2024 by PredatorAiBot</span>
+</footer>
+
+
+</body>
+</html>

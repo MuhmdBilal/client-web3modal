@@ -1,0 +1,1591 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px; /* Add perspective for 3D effect */
+    background: #191E20; /* Arka plan rengi */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Background video */
+#background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('predatoraii.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+
+
+
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+    visibility: hidden; /* Initially hidden */
+}
+/* Particle.js background */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure particles are behind all content but above the background video */
+}
+
+/* Main container styling */
+.main-container {
+    height: 100vh; /* Full height */
+    z-index: 1; /* Ensure the container is above the particles */
+    overflow: auto; /* Add scroll for small screens */
+}
+
+.left-container, .right-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 30px 20px;
+    width: 90%;
+    max-width: 550px;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); /* Add shadow for 3D effect */
+    transform: translateZ(30px); /* Push the container forward */
+}
+
+.right-container {
+    max-height: 70vh; /* Limit height to 70% of the viewport */
+    overflow-y: auto; /* Add vertical scroll if content exceeds max-height */
+    width: 100%; /* Increase width to 95% of the available space */
+}
+
+/* Dropdown styling */
+.dropdown-menu {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: none;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display:none;
+}
+
+.dropdown-menu div {
+    color: white;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu div img {
+    margin-right: 10px;
+}
+
+.dropdown-menu div:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Search bar inside dropdown */
+#coinSearch {
+    width: 40%;
+    padding: 12px;
+    border: none;
+    border-bottom: 1px solid #555;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 16px;
+}
+
+#coinSearch::placeholder {
+    color: #ccc;
+}
+
+.selection-container {
+    display: flex;
+    justify-content: space-between; /* Space elements evenly */
+    margin-bottom: 20px;
+    width: 100%; /* Full width for container */
+
+}
+
+/* Transparent style for timeframe select */
+#timeframeSelect {
+    background-color: rgba(0, 0, 0, 0.8); /* Make background transparent */
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+#timeframeSelect option {
+    background-color: rgba(0, 0, 0, 0.7); /* Ensure options are also transparent */
+    color: white;
+}
+
+#timeframeSelect:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Slightly change on hover */
+}
+
+.top-right-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+}
+
+.top-right-buttons .btn {
+    margin: 5px;
+}
+
+
+
+.section.show {
+    display: block;
+    animation-name: slideDown;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.top-right-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+}
+
+.top-right-buttons .btn {
+    margin: 5px;
+}
+
+.section {
+     height: 70vh; /* 70% of the viewport height */
+    background-color: rgba(12, 10, 10, 0.9); /* Slightly transparent background */
+    color: white;
+    padding: 20px;
+    position: fixed;
+    top: 15vh; /* Centered vertically */
+    left: 15%;
+    right: 15%;
+    z-index: 1000;
+    overflow-y: auto; /* Add scrolling if content overflows */
+    display: none; /* Initially hidden */
+align-items: flex-start; /* Align items to the top */
+}
+
+.section.show {
+    display: block;
+    animation-name: slideDown;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#aboutParticles, #usageParticles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-radius: 10px;
+}
+
+.blue-light {
+    position: absolute;
+    top: 20%; /* Adjust the position to match your character's eye level */
+    left: 20%; /* Adjust the position to match your character's eye level */
+    width: 10px; /* Adjust the size as needed */
+    height: 10px; /* Adjust the size as needed */
+    background: rgba(0, 0, 255, 0.5); /* Blue light color with transparency */
+    border-radius: 50%; /* Make it circular or oval */
+    box-shadow: 0 0 20px 40px rgba(0, 0, 255, 0.8); /* Create the glowing effect */
+    animation: flicker 1s infinite alternate; /* Flickering effect */
+    margin-left:600px
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+ #aboutSection video {
+             width: 100%; /* Video takes up 40% of the container width */
+    ;
+    position: sticky; /* Freeze the video */
+    top: 0;
+        }
+
+#aboutText {
+    width: 100%; /* Text takes up 60% of the container width */
+    overflow-y: auto; /* Add scrolling to the text area */
+    padding-left: 20px; /* Space between video and text */
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Darken the background */
+    z-index: 999; /* Ensure it is above other elements */
+    display: none; /* Initially hidden */
+}
+
+#top-left {
+    position: fixed;
+    top: 10px;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+#avaxLogo {
+    width: 60px;
+    height: auto;
+}
+
+#avaxText {
+    color: red;
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 10px;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 1px 1px 2px #000, 3px 3px 5px #555, 6px 6px 10px #999; /* 3D effect */
+}
+
+
+/* General button styling */
+button {
+    background-color: #1f1f1f;
+    color: #ffffff;
+    border: 2px solid #2a2a2a;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    background-color: #333333;
+    border-color: #444444;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 10px #719ECE;
+}
+
+/* Specific button styling for primary action buttons */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #0069d9;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #218838;
+}
+
+.btn-success:hover {
+    background-color: #1e7e34;
+    border-color: #1c7430;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #bd2130;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #5a6268;
+}
+
+.btn-secondary:hover {
+    background-color: #545b62;
+    border-color: #4e555b;
+}
+
+
+
+
+
+/* General modal styling */
+.modal-dialog {
+    max-width: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.7); /* Match right card transparency */
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); /* 3D shadow effect */
+    border: none; /* Remove default border */
+    overflow: hidden; /* Ensure no overflow */
+}
+
+.modal-header, .modal-body, .modal-footer {
+    background-color: transparent; /* Ensures uniform background */
+    color: white;
+    border-bottom: none; /* Remove any default borders */
+    border-top: none;
+    border-radius: 8px; /* Round the corners slightly */
+    padding: 15px; /* Reduced padding for spacing */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 1.2rem; /* Smaller font size for the header */
+    font-weight: bold;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close {
+    color: #fff;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.close:hover {
+    opacity: 1;
+}
+
+#testSignalModal .btn-secondary {
+    background-color: #6c757d;
+    border-color: #5a6268;
+}
+
+#testSignalModal .btn-secondary:hover {
+    background-color: #545b62;
+    border-color: #4e555b;
+}
+
+/* Styling for Chart and Trade Cards */
+#chartCard, .trade-card {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    height: 100%; /* Full height of the grid cell */
+}
+
+#tradingViewChart {
+    width: 100%;
+    height: 400px; /* Set a fixed height initially */
+}
+
+.trade-card .card-body {
+    padding: 15px;
+}
+
+
+
+.trade-card .card-title {
+    font-size: 1rem;
+}
+
+.form-group {
+    margin-bottom: 0.75rem;
+}
+
+/* Button and Input Consistency */
+.flex-fill {
+    flex: 1;
+}
+
+/* Button Styles */
+.btn {
+    padding: 0.35rem 1rem; /* Adjust padding for better fit */
+    font-size: 0.85rem; /* Font size for better readability */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-group .form-control {
+    flex: 1;
+    margin: 0 5px; /* Space between input fields */
+}
+
+
+/* PnL Modal Styling */
+.pnl-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 5000; /* On top of other content */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark overlay background */
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Optional: add blur to the background */
+}
+
+.pnl-modal-content {
+    background-color: rgba(30, 30, 30, 0.85); /* Transparent background */
+    padding: 20px;
+    border: 1px solid #444;
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); /* 3D shadow effect */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition */
+    transform: scale(0.95); /* Initial scale for animation effect */
+    opacity: 0; /* Initial opacity for fade-in effect */
+}
+
+.pnl-modal.show .pnl-modal-content {
+    transform: scale(1); /* Scale up for entrance */
+    opacity: 1; /* Fade in */
+}
+
+.pnl-text {
+    font-size: 1.5rem; /* Font size */
+    font-weight: bold;
+    color: #fff; /* Ensure text is visible */
+    margin-bottom: 20px; /* Space below the text */
+}
+
+.text-success {
+    color: #28a745 !important; /* Green for positive PnL */
+}
+
+.text-danger {
+    color: #dc3545 !important; /* Red for negative PnL */
+}
+
+.btn-custom {
+    background: linear-gradient(145deg, #1f1f1f, #292929); /* Gradient for button */
+    border: 1px solid #444;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    outline: none;
+    margin-top: 10px; /* Space above the button */
+}
+
+.btn-custom:hover {
+    background: linear-gradient(145deg, #292929, #1f1f1f);
+    border-color: #666;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    transform: translateY(-2px);
+}
+
+.btn-custom:active {
+    transform: translateY(1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
+}
+
+
+/* General modal styling */
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.7); /* Match right card transparency */
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); /* 3D shadow effect */
+    border: none; /* Remove default border */
+}
+
+.modal-header, .modal-body, .modal-footer {
+    background-color: transparent; /* Ensures uniform background */
+    color: white;
+    border-bottom: none; /* Remove any default borders */
+    border-top: none;
+    border-radius: 8px; /* Round the corners slightly */
+
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 1.5rem; /* Larger font size for the header */
+    font-weight: bold;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close {
+    color: #fff;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.close:hover {
+    opacity: 1;
+}
+
+#testSignalModal .btn-secondary {
+    background-color: #6c757d;
+    border-color: #5a6268;
+}
+
+#testSignalModal .btn-secondary:hover {
+    background-color: #545b62;
+    border-color: #4e555b;
+}
+
+
+.signal-item {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center vertically */
+    justify-content: space-between; /* Space between text and button */
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.signal-item img {
+    margin-right: 10px;
+}
+
+.signal-item span {
+    flex-grow: 1; /* Take up remaining space */
+    margin-right: 15px; /* Add space between text and button */
+}
+
+.test-signal-button {
+    margin-left: -100px; /* Space between text and button */
+    min-width: 50px; /* Ensure consistent button size */
+}
+
+/* Custom Button Styling for About, Usage, Clear, and Select Coin */
+.btn-custom {
+    background: linear-gradient(145deg, #1f1f1f, #292929); /* Gradient background */
+    border: 1px solid #444; /* Subtle border */
+    color: #fff; /* Text color */
+    padding: 12px 24px; /* Padding for size */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Bold text */
+    text-transform: uppercase; /* Uppercase text */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: all 0.3s ease; /* Smooth transition */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* 3D shadow effect */
+    margin: 5px; /* Space between buttons */
+    outline: none; /* Remove outline */
+    min-width: 120px; /* Minimum width for uniformity */
+}
+
+.btn-custom:hover {
+    background: linear-gradient(145deg, #292929, #1f1f1f); /* Hover gradient */
+    border-color: #666; /* Darker border on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Deeper shadow on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+    color: #fff; /* Ensure text color stays white on hover */
+}
+
+.btn-custom:active {
+    transform: translateY(1px); /* Button press effect */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6); /* Reduced shadow on click */
+    color: #fff; /* Ensure text color stays white on active */
+}
+
+.top-right-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end; /* Align to the right */
+}
+
+.right-card-buttons {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center;
+    margin-top: 20px; /* Space above the button row */
+}
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #444;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    margin-top: 5px;
+    z-index: 1000;
+    padding: 10px;
+    min-width: 150px; /* Minimum width for dropdown */
+    max-height: 200px; /* Set a max height to enable scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Hide horizontal scrollbar if present */
+     scroll-behavior: smooth; /* Enables smooth scrolling */
+     cursor: pointer;
+}
+
+.dropdown-item {
+    color: #fff;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+
+/* Styles for Custom Alert Modal */
+.modal1 {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 5000; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+}
+
+.modal-dialog1 {
+    position: relative;
+    margin: auto;
+    max-width: 550px; /* Width of the modal */
+
+}
+
+.modal-content1 {
+    background-color: rgba(0, 0, 0, 0.7); /* Match right card transparency */
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); /* 3D shadow effect */
+    border: none; /* Remove default border */
+    overflow: hidden; /* Ensure no overflow */
+    padding:30px;
+
+}
+
+.modal-header1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-header1 .close1 {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.modal-footer1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signals-container [data-tooltip] {
+    position: relative;
+}
+
+.signals-container [data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    visibility: hidden;
+}
+
+.signals-container [data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Ensure the tooltip does not appear on the button */
+.signals-container button:hover::after {
+    display: none;
+}
+
+
+
+
+
+    .modal-content {
+        padding: 10px;
+    }
+
+    .trade-card {
+        margin-bottom: 15px;
+    }
+
+    #chartCard, .trade-card {
+        width: 100%;
+    }
+
+      #chartCard{
+	height:60vh;
+}
+
+    #chartCard {
+        margin-bottom: 15px;
+    }
+
+    #testSignalModal .modal-dialog {
+        margin: 10px auto;
+        max-width: 100%;
+    }
+
+    /* Reorder elements for small screens */
+    #testSignalModal .modal-body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #testSignalModal #chartCard {
+        order: 1; /* Move chart card to the top */
+    }
+
+    #testSignalModal .trade-card {
+        order: 2; /* Move trade card to below chart card */
+    }
+}
+
+
+
+
+
+
+ 
+
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+        overflow-y: auto; /* Add scroll for small screens */
+    }
+
+    .left-container, .right-container {
+        margin-top: 100px;
+    }
+
+    .right-container {
+        width: 100%;
+        max-width: 600px;
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    .selection-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dropdown, .select-wrapper, #coinSearch, #timeframeSelect {
+        width: 100%;
+        margin: 10px 0; /* Adjust margin for better spacing */
+    }
+
+     .modal-body {
+        flex-direction: column; /* Stack cards vertically on small screens */
+    }
+	
+   #testSignalModal .modal-dialog {
+        margin: 15px auto;
+        max-width: 90%;
+    }
+
+    .trade-card,
+    #chartCard {
+        width: 100%;
+    }
+    
+
+
+    .test-signal-button {
+    margin-left: -5px; /* Space between text and button */
+    min-width: 50px; /* Ensure consistent button size */
+    height:60px;
+
+        .form-group {
+        flex-direction: column; /* Stack inputs vertically on smaller screens */
+    }
+
+    .flex-fill {
+        margin-bottom: 10px; /* Space between stacked inputs */
+    }
+
+
+#fullscreenVideo{
+
+  width: 100%;
+
+}
+}
+
+
+}
+
+
+
+
+/* Additional Styles */
+#timer, #status, #signals {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    transform: translateZ(30px); /* Push the container forward */
+}
+
+#status {
+    max-height: 150px;
+    overflow-y: auto;
+
+
+
+}
+
+
+
+#signals {
+    max-height: 70vh; /* Ensure it doesn't take more than 70% of the viewport height */
+    overflow-y: auto; /* Add vertical scroll */
+}
+
+
+#realTimeChart {
+    width: 90%;
+
+}
+#closeChartButton {
+    margin-bottom: 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 25px;
+}
+#closeChartButton:hover {
+    background-color: #c82333;
+}
+
+#musicControlButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#musicControlIcon {
+    width: 50px;
+    height: 50px;
+}
+
+
+
+
+/* About and Usage section styles */
+#aboutSection, #usageSection,#strategySection  {
+
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
+}
+
+.usage-step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.usage-step:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Highlight on hover */
+}
+
+.usage-video {
+    flex: 0 0 150px;
+    margin-right: 15px;
+    cursor: pointer; /* Change cursor to pointer to indicate clickability */
+}
+
+.usage-video video {
+    width: 140px;
+    height: 100px;
+    display: block;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.usage-video video:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.usage-content {
+    flex: 1;
+}
+
+.usage-content h3 {
+    margin-top: 0;
+    color: #fff; /* White text color */
+}
+
+.usage-content p {
+    color: #ddd; /* Light grey text color */
+}
+
+.close-btn {
+    position: sticky;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    color: white;
+    font-size: 24px;
+    border: 2px solid white;
+    border-radius: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    z-index: 10;
+
+}
+
+.close-btn:hover {
+    color: red;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: red;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.usage-step {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    background-color:rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.usage-video,
+.usage-content {
+    flex: 1 1 50%;
+    padding: 20px;
+}
+
+.usage-video video {
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.usage-video video:hover {
+    transform: scale(1.05);
+}
+
+.usage-content h3 {
+    margin-top: 0;
+}
+
+.close-btn1 {
+    font-size: 24px;
+    color: #fff;
+    background: #000;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    cursor: pointer;
+    position: sticky; /* Make the button sticky */
+    top: 10px; /* Position it at the top-right corner */
+    right: 10px;
+    z-index: 10; /* Ensure it's above other elements */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.video-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content2 {
+
+    margin: auto;
+    margin-top:10%;
+
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 8px;
+    position: relative;
+}
+
+
+
+
+    .usage-step {
+        flex-direction: column;
+    }
+
+    .usage-video,
+    .usage-content {
+        flex: 1 1 100%;
+        padding: 10px;
+    }
+
+
+
+
+
+
+#fullscreenVideo{
+
+  width: 100%;
+
+
+}
+
+
+.strategy-video video {
+    width: 50%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left:25%;
+
+}
+
+
+
+.metamask-icon {
+    width: 24px; /* Set icon size */
+    height: 24px; /* Set icon size */
+    margin-right: 8px; /* Space between icon and text */
+}
+
+.btn-custom3:hover {
+    background-color: #e2761b; /* Darken on hover */
+}
+
+
+.modal-body p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        #policyConfirmation {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        #policyConfirmation input {
+            margin-right: 10px;
+        }
+
+
+.marquee {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 40s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+     .navbar-custom {
+    display: none; /* Navbar'ı gizler */
+    color: white;
+    position: fixed;
+    top: 0;
+    z-index: 500;
+
+    display: flex;
+    justify-content: flex-end; /* Navbar elemanlarını sağa hizalar */
+        }
+
+        .navbar-custom .navbar-nav .nav-link {
+            color: white;
+            transition: color 0.2s;
+        }
+
+        .navbar-custom .navbar-nav .nav-link:hover {
+            color: #ffcc00; /* Hover color */
+        }
+
+        .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.5);
+            margin-right: 20px; /* Sağdan biraz boşluk bırakır */
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+
+        .nav-item {
+            margin-left: 20px;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+
+@media (max-width: 768px) {
+
+      .navbar-custom {
+
+            width: 100%;
+            display: none; /* Navbar'ı gizler */
+
+        }
+
+
+
+        /* Navbar açıkken kapanmasını sağlayacak CSS */
+    .navbar-collapse.collapse.show {
+        display: block;
+    }
+
+
+
+
+
+
+        }
+
+
+/* Seçili öğeler için stil */
+.selected-coins-container {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+/* Arama sonuçları için stil */
+.search-results-container {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.search-results-container div {
+    padding: 5px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+}
+
+.search-results-container div:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+/* Dropdown menü için özel stil */
+#communityDropdown {
+    min-width: 200px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+
+    left: auto;
+    right: 0; /* Sola hizalamak için sağa yerleştir */
+
+}
+
+#communityDropdown .dropdown-item {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 5px 0;
+     z-index: 10000;
+}
+
+#communityDropdown .dropdown-item:hover {
+    background-color: #f1f1f1;
+
+}
+
+
+
+.news-container , .header-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+
+    overflow-y: auto;
+    max-height: 400px;
+    color: white;
+    -webkit-overflow-scrolling: touch; /* Mobil cihazlar için yumuşak kaydırma */
+     width: 90%; /* Genişliği biraz küçült */
+        margin: 0 auto; /* Ortala */
+        overflow-x: hidden; /* Yatay kaydırmayı devre dışı bırak */
+
+}
+
+.news-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+.news-header-card{
+margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    border-radius: 5px;
+    color: white;
+}
+
+.news-card h5 {
+    margin: 0;
+    font-size: 16px;
+    color: #fff;
+}
+
+.trade-signal-summary {
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.volume-waiting-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Arka planı karartmak için */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Kartın en üstte görünmesini sağlar */
+}
+
+.volume-waiting-card {
+    background-color: rgba(0, 0, 0, 0.5); /* Kartın arka planı */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+
+}
+.coin-title:hover {
+    color: #007bff; /* Hover'da mavi renge dönüşür */
+    text-decoration: underline; /* Altı çizili olur */
+}
+
+@media (max-width: 768px) {
+
+        .news-container, .trade-signal-summary, .header-container {
+            max-height: 200px; /* Daha küçük ekranlar için yükseklik sınırını azalt */
+            width: 80%; /* Daha dar genişlik ayarı */
+            margin: 0 auto; /* Ortala */
+            overflow-x: hidden; /* Yatay kaydırmayı devre dışı bırak */
+        }
+}
+
+
+ /* Hover effect for the Volume Check button */
+    .volume-button:hover {
+        background-color: #555; /* Daha açık bir gri tonuna geçiş yapar */
+        border-color: #555; /* Buton kenarının rengini değiştirir */
+        color: #fff; /* Buton üzerindeki metnin rengini beyaz yapar */
+    }
+
+    /* Hover effect for the Timeframe Select */
+    .timeframe-select:hover {
+        background-color: #555; /* Daha açık bir gri tonuna geçiş yapar */
+        border-color: #555; /* Kenar rengini değiştirir */
+        color: #fff; /* Metin rengini beyaz yapar */
+    }
+
+    /* Select içindeki seçeneklerin hover efekti */
+    .timeframe-select option:hover {
+        background-color: #444; /* Seçeneklerin arka plan rengini değiştirir */
+        color: #fff; /* Seçeneklerin metin rengini beyaz yapar */
+    }
+
+
+
+
+ /* Modal container */
+    .modal10 {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.5);
+        padding-top: 60px;
+    }
+
+    /* Modal content */
+    .modal-content10 {
+        background-color: #333;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 700px;
+        color: white;
+        border-radius: 10px;
+    }
+
+    /* Close button */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Table styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid white;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #444;
+    }
+
+
+/* Media Query - Küçük ekranlar (mobil cihazlar) */
+@media (max-width: 600px) {
+    .modal-content {
+        padding: 10px;
+    }
+
+    .modal-footer button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* Media Query - Orta ve büyük ekranlar (tabletler ve daha büyük) */
+@media (min-width: 601px) {
+    .modal-footer button {
+        width: auto;
+        margin: 0 5px;
+    }
+
+    .modal-footer {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+
+/* General modal styling */
+.modal-dialog5 {
+    max-width: 75vw; /* 90% of viewport width */
+    max-height: 75vh; /* 90% of viewport height */
+    width: auto;
+    height: auto;
+}
+
+.modal-dialog5 {
+        margin: 10px auto;
+        max-width: 100%;
+    }
+
+

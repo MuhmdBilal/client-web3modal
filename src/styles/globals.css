@@ -1,0 +1,77 @@
+html,
+body {
+  background-color: #141414; /* Arka plan rengi: koyu gri veya siyah ton */
+  color: #ffffff; /* Metin rengi: beyaz */
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif; /* Genel yazı tipi */
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Butonlar için genel stil */
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #f28c28, #f0870b);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+/* Hover durumu */
+.button:hover {
+  background: linear-gradient(90deg, #f0870b, #f28c28);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Tıklanma efekti */
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Abonelik işlemi sırasında butonun devre dışı bırakılması */
+.button[disabled] {
+  background: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Mobil cihazlar için medya sorguları */
+@media (max-width: 768px) {
+  .card {
+    max-width: 90%; /* Mobil cihazlar için kart genişliğini ekranın %90'ı yapıyoruz */
+    height: auto;   /* Yüksekliği içerik boyutuna göre ayarlıyoruz */
+    padding: 15px;  /* Mobil için padding değerini azaltıyoruz */
+  }
+
+  .card h2 {
+    font-size: 20px; /* Başlık boyutunu mobil cihazlar için küçültüyoruz */
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    max-width: 95%; /* Daha küçük ekranlar için genişliği %95 yapıyoruz */
+    padding: 10px;  /* Küçük ekranlarda padding daha da azaltılıyor */
+  }
+
+  .card h2 {
+    font-size: 18px; /* Daha küçük ekranlar için başlık boyutu küçültülüyor */
+  }
+}

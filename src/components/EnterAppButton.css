@@ -1,0 +1,97 @@
+/* Ana container stil */
+.enter-app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f0f0; /* Arka plan rengini isteğinize göre değiştirin */
+}
+
+/* Buton stili */
+.enter-app-button,
+.menu-toggle-button,
+.policy-modal-button {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 18px;
+  padding: 15px 30px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.enter-app-button:hover,
+.menu-toggle-button:hover,
+.policy-modal-button:hover {
+  background-color: #45a049; /* Hover efekti */
+}
+
+/* Modal overlay stil */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Arka planı karartma */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal kart stil */
+.modal-card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.modal-card h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.modal-card p {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+/* Modal kapatma butonu */
+.close-modal-button {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.close-modal-button:hover {
+  background-color: #d32f2f; /* Hover efekti */
+}
+
+/* Status metin stil */
+#status {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Mobil için responsive ayar */
+@media (max-width: 600px) {
+  .modal-card {
+    width: 90%;
+  }
+  .enter-app-button,
+  .menu-toggle-button,
+  .policy-modal-button {
+    width: 90%;
+  }
+}

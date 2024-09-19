@@ -1,0 +1,58 @@
+/* Contact Container */
+.contact-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* Heading Styles */
+.contact-heading {
+  color: #f28c28;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+}
+
+.contact-heading .highlight {
+  color: #f28c28;
+}
+
+/* Social Media Icons */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icons .icon {
+  width: 60px;
+  height: 60px;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.social-icons .icon:hover {
+  transform: scale(1.1);
+  background-color: #ffffff;
+}
+
+.social-icons img {
+  width: 50%;
+  height: 50%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .social-icons {
+    justify-content: space-around;
+  }
+}

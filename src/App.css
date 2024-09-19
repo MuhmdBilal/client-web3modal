@@ -1,0 +1,212 @@
+
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(1) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* w3m-button'u tam ortada ve Connect Wallet butonunun üstünde konumlandırma */
+.w3m-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.connect-btn {
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.connect-btn:hover {
+  background-color: #45a049;
+}
+
+/* Genel stil ayarları */
+.wallet-select-container {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wallet-select-label {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.wallet-select {
+  width: 200px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.wallet-select:hover {
+  border-color: #4CAF50;
+  background-color: #e8f5e9;
+}
+
+.wallet-select:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.wallet-option {
+  padding: 10px;
+  font-size: 1rem;
+}
+
+
+/* Genel buton stili */
+button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: hsl(60, 2%, 56%);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  background-color: hsl(60, 2%, 56%);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+  background-color: hsl(60, 2%, 56%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(2px);
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Connect Wallet butonuna özel stil */
+.connect-button {
+  background-color:  hsl(60, 2%, 56%);
+}
+
+.connect-button:hover {
+  background-color:  hsl(60, 2%, 56%);
+}
+
+.connect-button:active {
+  background-color:  hsl(60, 2%, 56%);
+}
+
+/* Genel görünüm iyileştirmeleri */
+button:focus {
+  outline: none;
+}
+
+/* Kart genel stili */
+.card {
+  max-width: 300px; /* Daha küçük genişlik */
+  margin: 10px auto;
+  padding: 15px; /* Padding'i küçülttük */
+  border-radius: 8px; /* Daha küçük köşeler */
+  background-color: #1E1E1E;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  height:20%
+}
+
+/* Kart içindeki öğelerin düzenlenmesi */
+.card-header {
+  font-size: 1.2rem; /* Yazı tipi boyutunu küçülttük */
+
+  color: #F28C28;
+}
+
+
+
+.card-body select,
+.card-body button {
+  width: 100%;
+  padding: 8px; /* Padding'i küçülttük */
+  margin-top: 8px;
+  border-radius: 6px; /* Kenarları biraz daha köşeli yaptık */
+  border: 1px solid #ccc;
+  font-size: 0.9rem; /* Yazı tipi boyutunu küçülttük */
+  cursor: pointer;
+}
+
+.card-body select {
+  background-color: #fff;
+}
+
+.card-body button {
+  background-color:hsl(60, 2%, 56%);
+  color: #F28C28;
+  transition: background-color 0.3s ease;
+}
+
+.card-body button:hover {
+  background-color: hsl(60, 2%, 56%);
+}
+
+/* Kart footer alanı */
+.card-footer {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #F28C28;
+}

@@ -1,0 +1,66 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+}
+
+#status, #subscriptionFee, #walletAddress, #subscriptionStatus {
+  margin: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+  width: 300px;
+  text-align: center;
+}
+
+#connectMetaMaskButton, #connectWalletConnectButton {
+  background-color: #007bff;
+}
+
+#connectMetaMaskButton:hover, #connectWalletConnectButton:hover {
+  background-color: #0056b3;
+}
+
+#loginButton {
+  background-color: #ff9800;
+}
+
+#loginButton:hover {
+  background-color: #e68900;
+}
+
+#connectWalletConnectButton {
+  background-color: #00a3ff;
+}

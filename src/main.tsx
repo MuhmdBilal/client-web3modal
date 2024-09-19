@@ -16,17 +16,23 @@ const projectId = "9205d575da21f29d8e41a0abaaba6f0d";
 
 // Desteklenen zincirler (Only BSC Testnet now)
 const chains = [bscTestnet];
+const metadata = {
+  name: 'AppKit',
+  description: 'AppKit Example',
+  url: 'https://web3modal.com',
+  icons: ['https://avatars.githubusercontent.com/u/37784886']
+}
 
 // wagmiConfig oluşturuluyor
 const wagmiConfig = defaultWagmiConfig({
   projectId,
   chains,
-  metadata: {
-    name: "PredatorAiBot",
-    description: "Trading Ai Signal Bot",
-    url: "https://www.predatoraibot.com", // Domain adresinizle eşleşmeli
-    icons: ["https://www.predatoraibot.com/vite.svg"], // Uygulama ikonu
-  },
+  // metadata: {
+  //   name: "PredatorAiBot",
+  //   description: "Trading Ai Signal Bot",
+  //   url: "https://web3modal.com", // Domain adresinizle eşleşmeli
+  //   icons: ["https://www.predatoraibot.com/vite.svg"], // Uygulama ikonu
+  // },
 });
 
 // Web3Modal oluşturuluyor
@@ -34,6 +40,7 @@ createWeb3Modal({
   chains,
   projectId,
   wagmiConfig,
+  metadata
 });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

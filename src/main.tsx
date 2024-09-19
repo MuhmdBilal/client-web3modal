@@ -4,7 +4,7 @@ import App from "./App1";
 import "./index.css";
 
 import { createWeb3Modal, defaultWagmiConfig } from "@web3modal/wagmi/react";
-import { WagmiProvider } from "wagmi";
+import { WagmiConfig } from "wagmi";
 import { bscTestnet } from "wagmi/chains"; // Import only bscTestnet
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -44,11 +44,11 @@ createWeb3Modal({
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <WagmiProvider config={wagmiConfig}>
+    <WagmiConfig config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
         <App />
       </QueryClientProvider>
-    </WagmiProvider>
+    </WagmiConfig>
   </React.StrictMode>
 );
 
